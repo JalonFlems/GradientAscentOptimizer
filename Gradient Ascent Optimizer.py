@@ -20,7 +20,7 @@ from sympy.utilities.lambdify import lambdify, implemented_function
 
 #---------------------- Global Variables ----------------------
 
-AXIS_SPAN = 10
+AXIS_SPAN = 50
 INCREASE = 0.01
 MAX_ITERS = 10000
 
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         # Convert the function into a lambda function
         f_xy_lambda = lambdify([x, y], f_xy, 'numpy')
         
-        h, g = np.linspace(-AXIS_SPAN, AXIS_SPAN, 30), np.linspace(-AXIS_SPAN, AXIS_SPAN, 30)
+        h, g = np.linspace(-AXIS_SPAN + x_o, AXIS_SPAN + x_o, 30), np.linspace(-AXIS_SPAN + y_o, AXIS_SPAN + y_o, 30)
         
         X, Y = np.meshgrid(h, g)
         
@@ -118,7 +118,7 @@ if __name__ == "__main__":
         ax = fig.add_subplot(1, 1, 1, projection = '3d')
         ax.plot3D(x_pts, y_pts, z_pts, 'red')
         #ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='magma', edgecolor='none')
-        ax.plot_wireframe(X, Y, Z, rstride=1, cstride=1, color='black')
+        ax.plot_wireframe(X, Y, Z, rstride=1, cstride=1, color='black', alpha = 0.5)
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_zlabel('z')
